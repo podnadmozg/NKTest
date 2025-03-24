@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НКТ-ТрубПром | Производство насосно-компрессорных труб</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/pipe-factory.jpg');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        section {
+            padding: 80px 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .cta-button {
+            background: #0057A8;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>НКТ-ТрубПром</h2>
+        <div>
+            <a href="#home">Главная</a>
+            <a href="#about">О нас</a>
+            <a href="#products">Продукция</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>Производство НКТ труб по ГОСТ</h1>
+            <p>Насосно-компрессорные трубы для нефтегазовой отрасли с сертификацией качества</p>
+            <button class="cta-button">Заказать консультацию</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="grid">
+            <div class="product-card">
+                <h3>О компании</h3>
+                <p>Производим НКТ трубы согласно ГОСТ 633-80 и ГОСТ Р 50864-96. 
+                   Используем сталь марок Д, К, Е и Л с толщиной стенки от 5 до 11 мм. 
+                   Контроль качества на всех этапах производства.</p>
+                <img src="images/quality-control.jpg" alt="Контроль качества" style="width:100%; max-width:400px; margin:20px 0;">
+                <button class="cta-button">Сертификаты качества</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="grid">
+            <div class="product-card">
+                <h3>Трубы НКТ-73</h3>
+                <p>Диаметр 73 мм, резьба треугольного профиля. 
+                   Рабочее давление до 50 МПа. Материал - сталь группы прочности D.</p>
+                <button class="cta-button">Технические характеристики</button>
+            </div>
+            <div class="product-card">
+                <h3>Трубы НКТ-89</h3>
+                <p>Толстостенные трубы для глубинных скважин. 
+                   Соответствие API 5CT. Антикоррозийная обработка.</p>
+                <button class="cta-button">Скачать каталог</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Связаться с нами</h3>
+        <form class="contact-form">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="tel" placeholder="Телефон" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Сообщение" rows="4" required></textarea>
+            <button class="cta-button" type="submit">Отправить запрос</button>
+        </form>
+        <p style="margin-top:20px;">© 2024 НКТ-ТрубПром. Все права защищены</p>
+    </footer>
+
+    <script>
+        // Анимация при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Плавный скролл
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
